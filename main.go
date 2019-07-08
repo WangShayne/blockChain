@@ -55,9 +55,23 @@ func NewBlockChain() *BlockChain {
 	}
 }
 
+//	向链上添加新区块
+func (bc *BlockChain) AddBlock(data string) {
+	// 获取最后一个区块
+	lastBlock := bc.blocks[len(bc.blocks)-1]
+	// 获取最后一个区块的hash作为前区块hash
+	prevHash := lastBlock.Hash
+	// 创建新区块
+	block := NewBlock(data, prevHash)
+	// 添加新区块
+	bc.blocks = append(bc.blocks, block)
+}
+
 func main() {
-	bl := NewBlockChain()
-	for i, block := range bl.blocks {
+	bc := NewBlockChain()
+	bc.AddBlock("添加一个新区块")
+	bc.AddBlock("添加第二个新区块")
+	for i, block := range bc.blocks {
 		fmt.Printf("当前区块高度: %d\n", i)
 		fmt.Printf("前区块hash值: %x\n", block.PrevHash)
 		fmt.Printf("当前区块hash值: %x\n", block.Hash)
