@@ -36,14 +36,28 @@ type Block struct {
 //    * 生成哈希
 func (block *Block) SetHash() {
 	// 获取区块信息
-	blockInfo := []byte{}
-	blockInfo = append(blockInfo, Uint64ToByte(block.Version)...)
-	blockInfo = append(blockInfo, block.MerkelRoot...)
-	blockInfo = append(blockInfo, Uint64ToByte(block.Timestamp)...)
-	blockInfo = append(blockInfo, Uint64ToByte(block.Difficulty)...)
-	blockInfo = append(blockInfo, Uint64ToByte(block.Nonce)...)
-	blockInfo = append(blockInfo, block.PrevHash...)
-	blockInfo = append(blockInfo, block.Data...)
+	//blockInfo := []byte{}
+	//blockInfo = append(blockInfo, Uint64ToByte(block.Version)...)
+	//blockInfo = append(blockInfo, block.MerkelRoot...)
+	//blockInfo = append(blockInfo, Uint64ToByte(block.Timestamp)...)
+	//blockInfo = append(blockInfo, Uint64ToByte(block.Difficulty)...)
+	//blockInfo = append(blockInfo, Uint64ToByte(block.Nonce)...)
+	//blockInfo = append(blockInfo, block.PrevHash...)
+	//blockInfo = append(blockInfo, block.Data...)
+
+	// 用join生成
+	tmp := [][]byte{
+		Uint64ToByte(block.Version),
+		block.MerkelRoot,
+		Uint64ToByte(block.Timestamp),
+		Uint64ToByte(block.Difficulty),
+		Uint64ToByte(block.Nonce),
+		block.PrevHash,
+		block.Data,
+	}
+
+	blockInfo := bytes.Join(tmp, []byte{})
+
 	// 生成hash
 	hash := sha256.Sum256(blockInfo)
 
