@@ -87,7 +87,12 @@ func NewBlock(data string, prevBlockHash []byte) *Block {
 		Data:       []byte(data),
 	}
 
-	block.SetHash()
+	//block.SetHash()
+
+	pow := NewProofOfWord(&block)
+	hash, nonce := pow.Run()
+	block.Hash = hash
+	block.Nonce = nonce
 
 	return &block
 }
