@@ -1,7 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"crypto/sha256"
+	"encoding/binary"
+	"log"
 	"time"
 )
 
@@ -49,7 +52,12 @@ func (block *Block) SetHash() {
 
 // uint64转byte
 func Uint64ToByte(num uint64) []byte {
-	return []byte{}
+	var buffer bytes.Buffer
+	err := binary.Write(&buffer, binary.BigEndian, num)
+	if err != nil {
+		log.Panic(err)
+	}
+	return buffer.Bytes()
 }
 
 //   * 创建区块
