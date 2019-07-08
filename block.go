@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"crypto/sha256"
 	"encoding/binary"
 	"log"
 	"time"
@@ -33,6 +32,7 @@ type Block struct {
 	Data       []byte //数据
 }
 
+/*
 //    * 生成哈希
 func (block *Block) SetHash() {
 	// 获取区块信息
@@ -63,6 +63,7 @@ func (block *Block) SetHash() {
 
 	block.Hash = hash[:]
 }
+*/
 
 // uint64转byte
 func Uint64ToByte(num uint64) []byte {

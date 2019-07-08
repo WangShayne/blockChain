@@ -6,8 +6,12 @@ import (
 
 func main() {
 	bc := NewBlockChain()
-	bc.AddBlock("添加一个新区块")
-	bc.AddBlock("添加第二个新区块")
+
+	for i := 0; i < 5; i++ {
+
+		bc.AddBlock(fmt.Sprintf("添加第%d个区块", i+1))
+	}
+
 	for i, block := range bc.blocks {
 		fmt.Printf("当前区块高度: %d\n", i)
 		fmt.Printf("时间 %d\n", block.Timestamp)
