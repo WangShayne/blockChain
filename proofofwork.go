@@ -14,9 +14,17 @@ func NewProofOfWord(block *Block) *ProofOfWork {
 		block: block,
 	}
 
-	targetStr := "0001000000000000000000000000"
+	targetStr := "0000100000000000000000000000000000000000000000000000000000000000"
 	targetInt := big.Int{}
 	targetInt.SetString(targetStr, 16)
 	pow.target = &targetInt
 	return &pow
 }
+
+// 提供不断计算的hash函数 Run()
+func (pow *ProofOfWork) Run() ([]byte, uint64) {
+	//TODO
+	return []byte("helloww"), 10
+}
+
+//  提供一个校验函数 IsValid()
