@@ -7,7 +7,7 @@ import (
 func main() {
 	bc := NewBlockChain()
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 10; i++ {
 
 		bc.AddBlock(fmt.Sprintf("添加第%d个区块", i+1))
 	}
